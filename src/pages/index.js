@@ -18,25 +18,13 @@ import {
   Typography,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
+import { foods } from "../assets/Food";
 
 import bg from "../images/bg.jpg";
 import pho from "../images/BEP_Food_Photos_PHO-8.jpg";
-import tofu from "../images/BEP_Food_Photos_Tofu-3.jpg";
 import banh from "../images/BEP_Food_Photos_BanhMiDacBiet.jpg";
-import spring from "../images/BEP_Food_Photos_SPRINGroll.jpg";
-import bun from "../images/BEP_Food_Photos-2.jpg";
-import bowl from "../images/BEP_Food_Photos-4.jpg";
 
 export default function Index() {
-  const foods = [
-    { image: pho, name: "Phở" },
-    { image: banh, name: "Banh Mi" },
-    { image: spring, name: "Spring Roll" },
-    { image: bun, name: "Bun" },
-    { image: bowl, name: "???" },
-    { image: tofu, name: "Tofu" },
-  ];
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -62,12 +50,11 @@ export default function Index() {
         >
           <Navbar />
           <Container
-            maxWidth={false}
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              height: "60vh",
+              height: "50vh",
             }}
           >
             <Stack>
@@ -78,7 +65,12 @@ export default function Index() {
                 variant="outlined"
                 color="warning"
                 size="large"
-                sx={{ width: 200, mx: "auto", mt: 5, borderRadius: 0 }}
+                sx={{
+                  width: 200,
+                  mx: "auto",
+                  mt: 5,
+                  borderRadius: 0,
+                }}
               >
                 order now
               </Button>
@@ -104,7 +96,10 @@ export default function Index() {
           </Grid>
           <Container sx={{ mt: 3 }}>
             <Tabs value={value} onChange={handleChange} centered>
-              <Tab label="Phở" disableRipple />
+              {foods.map((food) => (
+                <Tab label={food.name} disableRipple />
+              ))}
+              {/* <Tab label="Phở" disableRipple />
               <Tab label="com" disableRipple />
               <Tab label="Banh Mi" disableRipple />
               <Tab label="Khai Vi" disableRipple />
@@ -112,7 +107,7 @@ export default function Index() {
               <Tab label="Banh Hoi" disableRipple />
               <Tab label="Beverages" disableRipple />
               <Tab label="Che (pudding)" disableRipple />
-              <Tab label="Smoothies" disableRipple />
+              <Tab label="Smoothies" disableRipple /> */}
             </Tabs>
             {value === 0 && (
               <div value={0} index={0}>

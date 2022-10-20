@@ -1,5 +1,6 @@
 import React from "react";
+import Layout from "../components/Layout";
 
 export default function menu() {
-  return <div>menu</div>;
+  return <Layout>menu</Layout>;
 }

@@ -20,12 +20,14 @@ export default function Navbar() {
       sx={{ alignItems: "center" }}
     >
       <Toolbar sx={{ spacing: 8 }}>
-        <img
-          src={logo}
-          alt="pho bac logo"
-          height={100}
-          style={{ margin: "8px" }}
-        />
+        <Link to="/">
+          <img
+            src={logo}
+            alt="pho bac logo"
+            height={100}
+            style={{ margin: "8px" }}
+          />
+        </Link>
         <Link to="/" style={linkStyle}>
           Home
         </Link>

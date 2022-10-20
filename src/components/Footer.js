@@ -13,7 +13,7 @@ export default function Footer() {
     textDecorationLine: "none",
   };
   return (
-    <div
+    <footer
       style={{
         backgroundColor: "grey",
         padding: 20,
@@ -86,6 +86,6 @@ export default function Footer() {
           </Grid>
         </Grid>
       </Container>
-    </div>
+    </footer>
   );
 }
