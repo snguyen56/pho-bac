@@ -3,6 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { Link } from "gatsby";
 import { Button } from "@mui/material";
+import { StaticImage } from "gatsby-plugin-image";
 
 import logo from "../images/logo.jpg";
 
@@ -21,8 +22,8 @@ export default function Navbar() {
     >
       <Toolbar sx={{ spacing: 8 }}>
         <Link to="/">
-          <img
-            src={logo}
+          <StaticImage
+            src="../images/logo.jpg"
             alt="pho bac logo"
             height={100}
             style={{ margin: "8px" }}

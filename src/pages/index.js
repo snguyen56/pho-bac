@@ -19,12 +19,11 @@ import {
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { foods } from "../assets/Food";
+import { graphql } from "gatsby";
+import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import bg from "../images/bg.jpg";
-import pho from "../images/BEP_Food_Photos_PHO-8.jpg";
-import banh from "../images/BEP_Food_Photos_BanhMiDacBiet.jpg";
-
-export default function Index() {
+export default function Index({ data }) {
+  console.log(data);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -34,7 +33,58 @@ export default function Index() {
   return (
     <>
       <CssBaseline />
-      <div
+      <div style={{ display: "grid", opacity: 0.9, backgroundColor: "black" }}>
+        <StaticImage
+          style={{
+            gridArea: "1/1",
+            maxHeight: 700,
+          }}
+          layout="fullWidth"
+          alt=""
+          src={"../images/banner/bg.jpg"}
+          formats={["auto", "webp", "avif"]}
+        />
+        <div
+          style={{
+            gridArea: "1/1",
+            position: "relative",
+            placeItems: "stretch ",
+            display: "grid",
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: (theme) =>
+                alpha(theme.palette.common.black, 0.5),
+              height: "inherit",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Navbar />
+            <Stack>
+              <Typography variant="h3" color="white" textAlign="center">
+                Vietnamese Restaurant Noodle Soup
+              </Typography>
+              <Button
+                variant="outlined"
+                color="warning"
+                size="large"
+                sx={{
+                  width: 200,
+                  mx: "auto",
+                  mt: 5,
+                  borderRadius: 0,
+                }}
+              >
+                order now
+              </Button>
+            </Stack>
+          </Box>
+        </div>
+      </div>
+      {/* <div
         style={{
           height: "700px",
           backgroundImage: `url(${bg})`,
@@ -77,18 +127,23 @@ export default function Index() {
             </Stack>
           </Container>
         </Box>
-      </div>
+      </div> */}
       <div style={{ marginBottom: 50 }}>
         <Container>
           <Typography variant="h3" textAlign="center" my={5}>
             Explore our Most Popular Dishes
           </Typography>
           <Grid container spacing={3}>
-            {foods.map((food) => (
+            {data.allFile.nodes.map((node) => (
               <Grid item xs={4}>
                 <Card style={{ backgroundColor: "lightgrey" }}>
-                  <CardMedia component="img" image={food.image} />
-                  <CardHeader title={food.name} subheader="Translated Food" />
+                  <CardMedia>
+                    <GatsbyImage
+                      image={getImage(node.childImageSharp)}
+                      alt={node.name}
+                    />
+                  </CardMedia>
+                  <CardHeader title={node.name} subheader="Translated Food" />
                   <CardContent>Food Description</CardContent>
                 </Card>
               </Grid>
@@ -115,14 +170,14 @@ export default function Index() {
                 <Grid container spacing={3}>
                   <Grid item xs={4}>
                     <Card style={{ backgroundColor: "lightgrey" }}>
-                      <CardMedia component="img" image={pho} />
+                      {/* <CardMedia component="img" image={pho} /> */}
                       <CardHeader title="title" subheader="Translated Food" />
                       <CardContent>Food Description</CardContent>
                     </Card>
                   </Grid>
                   <Grid item xs={4}>
                     <Card style={{ backgroundColor: "lightgrey" }}>
-                      <CardMedia component="img" image={banh} />
+                      {/* <CardMedia component="img" image={banh} /> */}
                       <CardHeader title="title" subheader="Translated Food" />
                       <CardContent>Food Description</CardContent>
                     </Card>
@@ -134,7 +189,7 @@ export default function Index() {
               <div value={0} index={0}>
                 tab 2
                 <Card style={{ backgroundColor: "lightgrey" }}>
-                  <CardMedia component="img" image={banh} />
+                  {/* <CardMedia component="img" image={banh} /> */}
                   <CardHeader title="title" subheader="Translated Food" />
                   <CardContent>Food Description</CardContent>
                 </Card>
@@ -154,5 +209,18 @@ export default function Index() {
     </>
   );
 }
+
+export const query = graphql`
+  {
+    allFile {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED, height: 1000, width: 1500)
+        }
+      }
+    }
+  }
+`;
 
 export const Head = () => <title>Pho Bac</title>;
