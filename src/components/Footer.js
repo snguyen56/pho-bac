@@ -22,7 +22,7 @@ export default function Footer() {
     >
       <Container>
         <Grid container>
-          <Grid item xs={3}>
+          <Grid item xs={12} md={3}>
             <Stack>
               <Typography variant="h6" gutterBottom>
                 Title
@@ -41,12 +41,12 @@ export default function Footer() {
               </Link>
             </Stack>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} md={3}>
             <Typography variant="h6" gutterBottom>
               Menu
             </Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} md={3}>
             <Typography variant="h6" gutterBottom>
               Information
             </Typography>
@@ -58,7 +58,7 @@ export default function Footer() {
               &nbsp; 770-986-4273
             </Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} md={3}>
             <Stack>
               <Typography variant="h6" gutterBottom>
                 Social Media

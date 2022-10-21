@@ -16,6 +16,13 @@ import {
   Tab,
   Tabs,
   Typography,
+  Paper,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { foods } from "../assets/Food";
@@ -23,10 +30,12 @@ import { graphql } from "gatsby";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 
 export default function Index({ data }) {
-  console.log(data);
+  // console.log("food is: ", foods.find(({ name }) => name === "Banh Mi").items);
+  console.log("food is: ", foods[0]);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
+    console.log("event value: ", newValue);
     setValue(newValue);
   };
 
@@ -62,72 +71,32 @@ export default function Index({ data }) {
               alignItems: "center",
             }}
           >
-            <Navbar />
-            <Stack>
-              <Typography variant="h3" color="white" textAlign="center">
-                Vietnamese Restaurant Noodle Soup
-              </Typography>
-              <Button
-                variant="outlined"
-                color="warning"
-                size="large"
-                sx={{
-                  width: 200,
-                  mx: "auto",
-                  mt: 5,
-                  borderRadius: 0,
-                }}
-              >
-                order now
-              </Button>
-            </Stack>
+            <div style={{ flexGrow: 1 }}>
+              <Navbar />
+            </div>
+            <div style={{ flexGrow: 1 }}>
+              <Stack>
+                <Typography variant="h3" color="white" textAlign="center">
+                  Vietnamese Restaurant Noodle Soup
+                </Typography>
+                <Button
+                  variant="outlined"
+                  color="warning"
+                  size="large"
+                  sx={{
+                    width: 200,
+                    mx: "auto",
+                    mt: 5,
+                    borderRadius: 0,
+                  }}
+                >
+                  order now
+                </Button>
+              </Stack>
+            </div>
           </Box>
         </div>
       </div>
-      {/* <div
-        style={{
-          height: "700px",
-          backgroundImage: `url(${bg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <Box
-          sx={{
-            backgroundColor: (theme) => alpha(theme.palette.common.black, 0.5),
-            height: "inherit",
-          }}
-        >
-          <Navbar />
-          <Container
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "50vh",
-            }}
-          >
-            <Stack>
-              <Typography variant="h3" color="white" textAlign="center">
-                Vietnamese Restaurant Noodle Soup
-              </Typography>
-              <Button
-                variant="outlined"
-                color="warning"
-                size="large"
-                sx={{
-                  width: 200,
-                  mx: "auto",
-                  mt: 5,
-                  borderRadius: 0,
-                }}
-              >
-                order now
-              </Button>
-            </Stack>
-          </Container>
-        </Box>
-      </div> */}
       <div style={{ marginBottom: 50 }}>
         <Container>
           <Typography variant="h3" textAlign="center" my={5}>
@@ -135,7 +104,7 @@ export default function Index({ data }) {
           </Typography>
           <Grid container spacing={3}>
             {data.allFile.nodes.map((node) => (
-              <Grid item xs={4}>
+              <Grid key={node.name} item sm={6} md={4}>
                 <Card style={{ backgroundColor: "lightgrey" }}>
                   <CardMedia>
                     <GatsbyImage
@@ -154,54 +123,73 @@ export default function Index({ data }) {
               {foods.map((food) => (
                 <Tab label={food.name} disableRipple />
               ))}
-              {/* <Tab label="Phở" disableRipple />
-              <Tab label="com" disableRipple />
-              <Tab label="Banh Mi" disableRipple />
-              <Tab label="Khai Vi" disableRipple />
-              <Tab label="Bun" disableRipple />
-              <Tab label="Banh Hoi" disableRipple />
-              <Tab label="Beverages" disableRipple />
-              <Tab label="Che (pudding)" disableRipple />
-              <Tab label="Smoothies" disableRipple /> */}
             </Tabs>
-            {value === 0 && (
-              <div value={0} index={0}>
-                tab 1
-                <Grid container spacing={3}>
-                  <Grid item xs={4}>
-                    <Card style={{ backgroundColor: "lightgrey" }}>
-                      {/* <CardMedia component="img" image={pho} /> */}
-                      <CardHeader title="title" subheader="Translated Food" />
-                      <CardContent>Food Description</CardContent>
-                    </Card>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <Card style={{ backgroundColor: "lightgrey" }}>
-                      {/* <CardMedia component="img" image={banh} /> */}
-                      <CardHeader title="title" subheader="Translated Food" />
-                      <CardContent>Food Description</CardContent>
-                    </Card>
-                  </Grid>
-                </Grid>
-              </div>
+            <TableContainer component={Paper} elevation={3}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Price</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {foods[value].items?.map((item) => (
+                    <TableRow>
+                      <TableCell>
+                        {item.name} <br /> {item.translate}
+                      </TableCell>
+                      <TableCell align="right">{item.price}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            {/* {value === 0 && (
+              <TableContainer component={Paper} elevation={3}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Name</TableCell>
+                      <TableCell align="right">Price</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {foods[0].items?.map((item) => (
+                      <TableRow>
+                        <TableCell>
+                          {item.name} <br /> {item.translate}
+                        </TableCell>
+                        <TableCell align="right">{item.price}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             )}
             {value === 1 && (
-              <div value={0} index={0}>
-                tab 2
-                <Card style={{ backgroundColor: "lightgrey" }}>
-                  {/* <CardMedia component="img" image={banh} /> */}
-                  <CardHeader title="title" subheader="Translated Food" />
-                  <CardContent>Food Description</CardContent>
-                </Card>
-              </div>
-            )}
-            {/* <div value={0} index={0}>
-              <Card style={{ backgroundColor: "lightgrey" }}>
-                <CardMedia component="img" image={pho} />
-                <CardHeader title="title" subheader="Translated Food" />
-                <CardContent>Food Description</CardContent>
-              </Card>
-            </div> */}
+              <TableContainer component={Paper} elevation={3}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Name</TableCell>
+                      <TableCell align="right">Price</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {foods
+                      .find(({ name }) => name === "Banh Mi")
+                      .items.map((item) => (
+                        <TableRow>
+                          <TableCell>
+                            {item.name} <br /> {item.translate}
+                          </TableCell>
+                          <TableCell align="right">{item.price}</TableCell>
+                        </TableRow>
+                      ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            )} */}
           </Container>
         </Container>
       </div>
@@ -212,7 +200,7 @@ export default function Index({ data }) {
 
 export const query = graphql`
   {
-    allFile {
+    allFile(sort: { fields: name, order: ASC }) {
       nodes {
         name
         childImageSharp {

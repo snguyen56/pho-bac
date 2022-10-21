@@ -1,15 +1,40 @@
-import pho from "../images/food/BEP_Food_Photos_PHO-8.jpg";
-import tofu from "../images/food/BEP_Food_Photos_Tofu-3.jpg";
-import banh from "../images/food/BEP_Food_Photos_BanhMiDacBiet.jpg";
-import spring from "../images/food/BEP_Food_Photos_SPRINGroll.jpg";
-import bun from "../images/food/BEP_Food_Photos-2.jpg";
-import bowl from "../images/food/BEP_Food_Photos-4.jpg";
-
 export const foods = [
-  { image: pho, name: "Phở" },
-  { image: banh, name: "Banh Mi" },
-  { image: spring, name: "Spring Roll" },
-  { image: bun, name: "Bun" },
-  { image: bowl, name: "???" },
-  { image: tofu, name: "Tofu" },
+  {
+    name: "Phở",
+    items: [
+      {
+        name: "tai & chin",
+        translate: "Rare Steak & Well-Done Brisket",
+        price: "$13",
+      },
+      {
+        name: "tai & gau",
+        translate: "Rare Steak & Fat Brisket",
+        price: "$13",
+      },
+    ],
+  },
+  {
+    name: "Banh Mi",
+    items: [
+      {
+        name: "banh mi thit nuong",
+        translate: "French sandwhich w/ grilled pork",
+        price: "$5.25",
+      },
+      {
+        name: "banh mi ga nuong",
+        translate: "French sandwhich w/ grilled chicken",
+        price: "$5.25",
+      },
+    ],
+  },
+  { name: "Spring Roll" },
+  { name: "Bun" },
+  { name: "che" },
+  { name: "com" },
+  { name: "khai vi" },
+  { name: "banh hoi" },
+  { name: "giai khat" },
+  { name: "Smoothies" },
 ];
