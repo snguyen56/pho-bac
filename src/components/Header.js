@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { alpha } from "@mui/material/styles";
+import { Button, Stack, Typography } from "@mui/material";
 import { StaticImage } from "gatsby-plugin-image";
 import Navbar from "./navbar";
 

@@ -31,11 +31,11 @@ import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 
 export default function Index({ data }) {
   // console.log("food is: ", foods.find(({ name }) => name === "Banh Mi").items);
-  console.log("food is: ", foods[0]);
+  // console.log("food is: ", foods[0]);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
-    console.log("event value: ", newValue);
+    // console.log("event value: ", newValue);
     setValue(newValue);
   };
 

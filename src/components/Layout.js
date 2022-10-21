@@ -1,8 +1,6 @@
 import React from "react";
-import { Box } from "@mui/system";
-import { alpha } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import Header from "./header";
+import Header from "./Header";
 import Footer from "./Footer";
 
 export default function Layout({ children }) {

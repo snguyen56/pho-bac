@@ -9,7 +9,10 @@ export default function about() {
       <Layout>
         <Container sx={{ my: 4 }}>
           <section className="centered-block">
-            <StaticImage src="../images/food/pho.jpg" alt="pho bac logo" />
+            <StaticImage
+              src="../images/food/Pho.jpg"
+              alt="pho bac about image"
+            />
             <div>
               <h1>Our Story</h1>
               <p>
