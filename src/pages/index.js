@@ -23,6 +23,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Divider,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { foods } from "../assets/Food";
@@ -112,14 +113,28 @@ export default function Index({ data }) {
                       alt={node.name}
                     />
                   </CardMedia>
-                  <CardHeader title={node.name} subheader="Translated Food" />
+                  <CardHeader
+                    title={node.name.slice(2)}
+                    subheader="Translated Food"
+                  />
                   <CardContent>Food Description</CardContent>
                 </Card>
               </Grid>
             ))}
           </Grid>
           <Container sx={{ mt: 3 }}>
-            <Tabs value={value} onChange={handleChange} centered>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              centered
+              TabIndicatorProps={{ hidden: true }}
+              sx={{
+                py: 5,
+                "& .Mui-selected": {
+                  color: "black",
+                },
+              }}
+            >
               {foods.map((food) => (
                 <Tab label={food.name} disableRipple />
               ))}
